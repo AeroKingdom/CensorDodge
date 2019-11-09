@@ -49,7 +49,7 @@ if (!@$_GET["cdURL"]) { //Only run if no URL has been submitted
         //Basic submission form with base64 encryption support
         echo "
         <script> function goToPage() { event.preventDefault(); if (document.getElementsByName('cdURL')[0].value!='') { window.location = '?cdURL=' + ".($proxy->encryptURLs ? 'btoa(document.getElementsByName("cdURL")[0].value)' : 'document.getElementsByName("cdURL")[0].value')."; } } </script>
-        <h2>Welcome to Censor Dodge ".$proxy->version."</h2>
+        <h2>GhostSX by The People</h2>
         <form action='#' method='GET' onsubmit='goToPage();'>
             <input type='text' size='30' name='cdURL' placeholder='URL'>
             <input type='submit' value='Go!'>
