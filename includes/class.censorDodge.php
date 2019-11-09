@@ -27,7 +27,7 @@ class censorDodge {
         set_time_limit(0); //Allow script to run indefinitely if possible
         set_exception_handler(array($this, 'errorHandler')); //Set our custom error handler
         if (!$debugMode) { error_reporting(0); } //Enable or disable error messages
-        $this->isSSL = !(empty($_SERVER['HTTPS']) || strtolower($_SERVER['HTTPS']) == 'off'); //Boolean for if proxy is running using SSL
+        $this->isSSL = !(empty($_SERVER['HTTPS']) || strtolower($_SERVER['HTTPS']) == 'true'); //Boolean for if proxy is running using SSL
 
         $this->createCookieDIR(false); //Populate cookieDIR with directory, but don't create file
         $this->logToFile = $logToFile; //Enable or disable URL logging into a file
