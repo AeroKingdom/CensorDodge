@@ -1,11 +1,11 @@
 <?php
 session_start(); //Start session for settings of proxy to be stored and recovered
 require("includes/class.censorDodge.php"); //Load censorDodge class
-$proxy = new censorDodge(@$_GET["cdURL"], true, true); //Instantiate censorDodge class
+$proxy = new censorDodge(@$_GET["problem"], true, true); //Instantiate censorDodge class
 
 //Clear cookies and resetting settings session
-if (isset($_GET["clearCookies"])) { $proxy->clearCookies(); echo '<meta http-equiv="refresh" content="0; url='.cdURL.'">'; }
-if (isset($_POST["resetSettings"])) { unset($_SESSION["settings"]); echo '<meta http-equiv="refresh" content="0; url='.cdURL.'">'; }
+if (isset($_GET["clearCookies"])) { $proxy->clearCookies(); echo '<meta http-equiv="refresh" content="0; url='.problem.'">'; }
+if (isset($_POST["resetSettings"])) { unset($_SESSION["settings"]); echo '<meta http-equiv="refresh" content="0; url='.problem.'">'; }
 
 //Settings to be put on page and editable
 $settings = array(
@@ -24,7 +24,7 @@ if (isset($_POST["updateSettings"])) {
         }
     }
 
-    echo '<meta http-equiv="refresh" content="0; url='.cdURL.'">'; //Reload page using META redirect
+    echo '<meta http-equiv="refresh" content="0; url='.problem.'">'; //Reload page using META redirect
 }
 else {
     foreach ($settings as $setting) {
@@ -40,7 +40,7 @@ if (!empty($errorTemplate)) {
     set_exception_handler("outside_handler");
 }
 
-if (!@$_GET["cdURL"]) { //Only run if no URL has been submitted
+if (!@$_GET["problem"]) { //Only run if no URL has been submitted
     $homeTemplate = findTemplate("","home");
 
     if (empty($homeTemplate)) {
@@ -48,18 +48,18 @@ if (!@$_GET["cdURL"]) { //Only run if no URL has been submitted
 
         //Basic submission form with base64 encryption support
         echo "
-        <script> function goToPage() { event.preventDefault(); if (document.getElementsByName('cdURL')[0].value!='') { window.location = '?cdURL=' + ".($proxy->encryptURLs ? 'btoa(document.getElementsByName("cdURL")[0].value)' : 'document.getElementsByName("cdURL")[0].value')."; } } </script>
+        <script> function goToPage() { event.preventDefault(); if (document.getElementsByName('problem')[0].value!='') { window.location = '?problem=' + ".($proxy->encryptURLs ? 'btoa(document.getElementsByName("problem")[0].value)' : 'document.getElementsByName("problem")[0].value')."; } } </script>
         <h2>GhostSX by The People</h2>
         <form action='#' method='GET' onsubmit='goToPage();'>
-            <input type='text' size='30' name='cdURL' placeholder='URL'>
+            <input type='text' size='30' name='problem' placeholder='URL'>
             <input type='submit' value='Go!'>
         </form>";
 
-        echo "<hr><h3>Proxy Settings:</h3><form action='".cdURL."' method='POST'>";
+        echo "<hr><h3>Proxy Settings:</h3><form action='".problem."' method='POST'>";
         foreach($settings as $setting) { //Toggle option for setting listed in array, completely dynamic
             echo '<span style="padding-right:20px;"><input type="checkbox" '.($proxy->{$setting[0]} ? "checked" : "") .' name="'.$setting[0].'" value="'.$proxy->{$setting[0]} .'"> '.$setting[1]."</span>";
         }
-        echo "<br><input style='margin-top: 20px;' type='submit' name='updateSettings' value='Update Settings'><form action='".cdURL."' method='POST'><input style='margin-left: 5px;' type='submit' value='Reset' name='resetSettings'></form></form>";
+        echo "<br><input style='margin-top: 20px;' type='submit' name='updateSettings' value='Update Settings'><form action='".problem."' method='POST'><input style='margin-left: 5px;' type='submit' value='Reset' name='resetSettings'></form></form>";
 
         $file = $proxy->parseLogFile(date("d-m-Y").".txt"); //Parse log file of current date format
         echo "<hr><h3>Pages Viewed Today (Total - ".count($file)." By ".count($proxy->sortParsedLogFile($file, "IP"))." Users):</h3>";
