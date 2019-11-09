@@ -1,7 +1,7 @@
 <?php
 define('DS', DIRECTORY_SEPARATOR); //Short hand DIR separator value
 define('BASE_DIRECTORY', dirname(get_included_files()[count(get_included_files())-2]).DS); //Compile base DIR for use by script
-define('cdURL', ("https://".$_SERVER['HTTP_HOST'].explode('?', $_SERVER['REQUEST_URI'])[0]); //Compile proxy URL base for use by script
+define('cdURL', "https://".$_SERVER['HTTP_HOST'].explode('?', $_SERVER['REQUEST_URI'])[0]); //Compile proxy URL base for use by script
 if (count(explode("&", $q=$_SERVER['QUERY_STRING']))>count($_GET)) { $_GET = array(); parse_str($q, $_GET); }
 
 class censorDodge {
