@@ -49,7 +49,7 @@ if (!@$_GET["problem"]) { //Only run if no URL has been submitted
         //Basic submission form with base64 encryption support
         echo "
         <script> function goToPage() { event.preventDefault(); if (document.getElementsByName('problem')[0].value!='') { window.location = '?problem=' + ".($proxy->encryptURLs ? 'btoa(document.getElementsByName("problem")[0].value)' : 'document.getElementsByName("problem")[0].value')."; } } </script>
-        <h2>GhostSX by The People</h2>
+        <h2>CensorDodge - GhostSX by The People</h2>
         <form action='#' method='GET' onsubmit='goToPage();'>
             <input type='text' size='30' name='problem' placeholder='URL'>
             <input type='submit' value='Go!'>
