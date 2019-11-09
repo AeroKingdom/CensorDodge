@@ -44,7 +44,7 @@ if (!@$_GET["cdURL"]) { //Only run if no URL has been submitted
     $homeTemplate = findTemplate("","home");
 
     if (empty($homeTemplate)) {
-        echo "<html><head><title>".ucfirst(strtolower($_SERVER['SERVER_NAME']))." - Censor Dodge ".$proxy->version."</title></head><body>"; //Basic title
+        echo "<html><head><title> Free Geometry Calculator Online </title></head><body>"; //Basic title
 
         //Basic submission form with base64 encryption support
         echo "
