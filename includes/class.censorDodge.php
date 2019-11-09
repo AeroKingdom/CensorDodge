@@ -44,7 +44,7 @@ class censorDodge {
 
             //Base64 decode URL if needed, if not just URL decode it
             preg_match("/[a-z0-9\+\/]+([\=]+|)/i",$URL,$matches); if (strlen($matches[0]) % 4 != 0 || !($decode = base64_decode($matches[0], true))) { preg_match("/[a-z0-9\+]+([\=]+|)/i",$URL,$matches); $decode = base64_decode($matches[0], true); }
-            if ((base64_encode($decode)===$matches[0] || $decode) && filter_var("http://".$decode, FILTER_VALIDATE_URL)) { $URL = str_replace($matches[0], $decode, $URL); } else { $URL = rawurldecode($URL); }
+            if ((base64_encode($decode)===$matches[0] || $decode) && filter_var("https://".$decode, FILTER_VALIDATE_URL)) { $URL = str_replace($matches[0], $decode, $URL); } else { $URL = rawurldecode($URL); }
             $this->URL = $this->modifyURL(trim($URL)); //Use coded function to fix URL if needed
         }
 
